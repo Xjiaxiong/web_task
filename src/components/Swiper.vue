@@ -48,8 +48,7 @@ const nextSlide = () => {
     currentSlide.value = 0;
     slidesStyle.transition = `none`
     slidesStyle.transform = `translate3d(0px, 0px, 0px)`;
-    // 强制浏览器重新计算宽度
-    // container.value?.offsetWidth
+    // 强制浏览器渲染
     setTimeout(() => { 
       slidesStyle.transition = `transform 0.5s ease`
       slidesStyle.transform = `translate3d(-${++currentSlide.value * slideWidth.value}px, 0px, 0px)`;
@@ -66,8 +65,7 @@ const prevSlide = () => {
     currentSlide.value = slides.value.length - 1;
     slidesStyle.transition = `none`
     slidesStyle.transform = `translate3d(-${(slides.value.length - 1) * slideWidth.value}px, 0px, 0px)`;
-    // 强制浏览器重新计算宽度
-    container.value?.offsetWidth
+    // 强制浏览器渲染
     setTimeout(() => { 
       slidesStyle.transition = `transform 0.5s ease`
       slidesStyle.transform = `translate3d(-${--currentSlide.value * slideWidth.value}px, 0px, 0px)`;

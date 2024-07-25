@@ -23,7 +23,7 @@ jobs:
 
     - name: Install pnpm
       run: |
-        npm install -g pnpm
+        npm install -g pnpm@9.4.0
         pnpm config set store-dir ~/.pnpm-store
 
     - name: Install dependencies
