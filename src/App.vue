@@ -1,30 +1,37 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Swiper from './components/Swiper.vue'
+import { ref } from 'vue'
+const autoPlay = ref(false)
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <Swiper :autoPlay="autoPlay" :duration="1500" />
+  <div class="footer">
+    <p>手写轮播图示例</p>
+    <div class="btn" @click="autoPlay = !autoPlay">{{ autoPlay ? `停止自动轮播` : `自动轮播` }}</div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+
+.btn {
+  color: #fff;
+  padding: 5px 12px;
+  background-color: #cb4444;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 6px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.btn:hover {
+  color: #fff;
+  background-color: #d11515;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer p {
+  font-size: 16px;
 }
 </style>

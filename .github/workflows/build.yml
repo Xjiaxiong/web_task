@@ -1,0 +1,42 @@
+name: Build and Package
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '21.7.1'
+
+    - name: Install pnpm
+      run: |
+        npm install -g pnpm
+        pnpm config set store-dir ~/.pnpm-store
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build project
+      run: pnpm build
+
+    - name: Zip build files
+      run: zip -r projects.zip ./*
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: projects-zip
+        path: projects.zip
